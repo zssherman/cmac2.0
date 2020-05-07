@@ -14,3 +14,4 @@ images/
 *.headers
 *inventory_report.odt
 *.egg-info/
+dask-worker*

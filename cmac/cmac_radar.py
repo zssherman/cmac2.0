@@ -206,7 +206,7 @@ def cmac(radar, sonde, config, flip_velocity=False,
     # Calculating differential phase fields.
     phidp, kdp = pyart.correct.phase_proc_lp_gf(
         radar, gatefilter=cmac_gates, offset=ref_offset, debug=True,
-        nowrap=50, fzl=fzl, self_const=self_const)
+        nowrap=50, fzl=fzl, self_const=self_const, phidp_field=field_config['input_phidp_field'])
     phidp_filt, kdp_filt = fix_phase_fields(
         copy.deepcopy(kdp), copy.deepcopy(phidp), radar.range['data'],
         cmac_gates)
