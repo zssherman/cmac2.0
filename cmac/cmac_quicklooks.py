@@ -1,5 +1,6 @@
 """ Code that plots fields from the CMAC radar object. """
 
+import gc
 import os
 from datetime import datetime
 import operator
@@ -342,7 +343,7 @@ def quicklooks(radar, config, image_directory=None,
     fig, ax = plt.subplots(1, 1, subplot_kw=dict(projection=ccrs.PlateCarree()),
                           figsize=[12, 8])
     display.plot_ppi_map('corrected_specific_diff_phase', sweep=sweep,
-                         vmin=0, vmax=6, resolution='50m',
+                         resolution='50m',
                          title=_generate_title(
                              radar, 'corrected_specific_diff_phase',
                              sweep), ax=ax,
@@ -554,6 +555,8 @@ def quicklooks(radar, config, image_directory=None,
         + '/signal_to_noise_ratio' + combined_name + '.png')
     plt.close(fig)
     del fig, ax, display
+
+    gc.collect()
 
 
 def _generate_title(radar, field, sweep):
